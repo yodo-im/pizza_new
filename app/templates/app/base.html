@@ -7,6 +7,13 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
         <title>{% block title %}{% endblock %}</title>
+        <script type='text/javascript'>
+            function buy_item(product_id){
+               xhttp=new XMLHttpRequest();
+               alert(product_id)
+               xhttp.open('POST','cart/add/'+product_id,true);
+            }
+            </script>
         <style>
             grandperents {
                 display: flex;

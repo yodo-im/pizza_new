@@ -3,11 +3,13 @@ from django.views.decorators.http import require_POST
 from app.models import Product
 from .cart import Cart
 from .forms import CartAddProductForm
-from django.contrib import messages
+from django.http import JsonResponse
+from django.core import serializers
 
 
 @require_POST
 def cart_add(request, product_id):
+    print('#')
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
     form = CartAddProductForm(request.POST)
@@ -16,13 +18,7 @@ def cart_add(request, product_id):
         cart.add(product=product,
                  quantity=cd['quantity'],
                  update_quantity=cd['update'])
-    messages.info(request, 'Товар "'+str(product)+'"'+'\r'+'добавлен в корзину')
-    if 'update' in request.POST:
-        upd = request.POST['update']
-    else:
-        upd = False
-
-    if upd == 'True':
+    if request.POST['update'] == 'True':
         return redirect('cart:cart_detail')
     else:
         return redirect('/#'+str(product_id))
@@ -37,7 +33,4 @@ def cart_remove(request, product_id):
 
 def cart_detail(request):
     cart = Cart(request)
-    for item in cart:
-        item['update_quantity_form'] = CartAddProductForm(initial={'quantity': item['quantity'],
-                                                                   'update': True})
     return render(request, 'cart/detail.html', {'cart': cart})
