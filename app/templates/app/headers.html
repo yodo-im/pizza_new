@@ -1,0 +1,81 @@
+<!--<div>-->
+
+<!--    <h1>-->
+<!--        Python pizza-->
+<!--    </h1>-->
+
+<!--    <form action="/">-->
+<!--        <button style="position: absolute; right: 120px; top: 35px;">-->
+<!--            <basket>-->
+<!--                Главная-->
+<!--            </basket>-->
+<!--        </button>-->
+<!--    </form>-->
+
+<!--    <form action="basket-page">-->
+<!--        <button style="position: absolute; right: 20px; top: 35px;">-->
+<!--            <basket>-->
+<!--                Корзина-->
+<!--            </basket>-->
+<!--        </button>-->
+<!--    </form>-->
+
+<!--</div>-->
+<div>
+    <style>
+        headers {
+            display: flex;
+            flex-direction: row;
+            flex-grow: 1;
+            height: 100px;
+            align-items: center;
+            width: 100%;
+        }
+        header {
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+
+    <headers>
+        <header>
+            <a href="/">
+            <img src="https://github.com/yodo-im/python_pizza/blob/main/logo.png?raw=true"
+                 width="80px" height="80px" alt="">
+            </a>
+        </header>
+        <header style="flex-grow: 2;">
+            <h1>
+                Python pizza
+            </h1>
+        </header>
+
+        <header style="flex-grow: 2;">
+            <text>
+                Пн-Вс с 7.00 до 23.00 <br>
+                Тел.: 8-800-xxx-xx-xx
+            </text>
+        </header>
+
+        <header>
+            <form action="/">
+                <button>
+                    <basket>
+                        ГЛАВНАЯ
+                    </basket>
+                </button>
+            </form>
+        </header>
+
+        <header>
+            <form action="/cart">
+                <button>
+                    <basket>
+                        КОРЗИНА | {{ cart.get_total_price }}Р
+                    </basket>
+                </button>
+            </form>
+        </header>
+
+    </headers>
+</div>

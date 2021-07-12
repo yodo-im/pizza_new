@@ -1,0 +1,68 @@
+<div>
+    <style>
+        dough {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            flex: 1 0 auto;
+        }
+        filling{
+            display: flex;
+            flex-direction: column;
+        }
+        .heading{
+            font-family: Open Sans;
+            font-size: 20px;
+            font-weight: bold;
+            color: #000000;
+        }
+        .description{
+            font-family: Open Sans;
+            font-size: 12px;
+            font-weight: 900;
+            color: #606f7e;
+        }
+    </style>
+
+    <dough>
+<!--            Изображение-->
+        <filling>
+            <img src="{{ product.image_url }}"
+                 width="100%" height="width" alt="" style="position:relative; left: 5px;">
+        </filling>
+<!--            Название-->
+        <filling>
+        	<text class="heading">
+                    {{ product.name }}
+                </text>
+        </filling>
+<!--            Описание-->
+        <filling style="height: 100px">
+            <text class="description">
+                {{ product.description }}
+            </text>
+        </filling>
+        <filling style="display: flex; flex-direction: row; flex-grow: 1; justify-content: space-between;
+                        align-items:center;">
+<!--            Цена-->
+            <fill>
+                <h7>
+                    {{ product.price }}р
+                </h7>
+            </fill>
+<!--            Кнопка покупки-->
+            <fill>
+                <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                    <button>
+                        ЗАКАЗАТЬ
+                    </button>
+<!--                    <button style="margin: 10px; padding: 10px; border-radius: 10px;">-->
+<!--                        заказать-->
+<!--                    </button>-->
+                    {{ cart_product_form }}
+                    {% csrf_token %}
+                </form>
+            </fill>
+        </filling>
+    </dough>
+</div>
